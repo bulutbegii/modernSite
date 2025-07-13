@@ -1,0 +1,918 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulut Gaye Pansiyonu Edirne - Tek, İki ve Üç Kişilik Odalar | Merkez Konum</title>
+    <meta name="description" content="Edirne merkezde bulunan Bulut Gaye Pansiyonu. Tek kişilik, iki kişilik ve üç kişilik odalarımızla konforlu konaklama. Ücretsiz WiFi, klima ve 24/7 güvenlik.">
+    <meta name="keywords" content="Edirne pansiyon, Edirne konaklama, Edirne otel, tek kişilik oda, iki kişilik oda, üç kişilik oda, Edirne merkez, uygun fiyat">
+    <meta name="author" content="Bulut Gaye Pansiyonu">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bulutgayepansiyon.com">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="business.hotel">
+    <meta property="og:title" content="Bulut Gaye Pansiyonu Edirne - Konforlu Konaklama">
+    <meta property="og:description" content="Edirne merkezde bulunan Bulut Gaye Pansiyonu. Tek kişilik, iki kişilik ve üç kişilik odalarımızla konforlu konaklama.">
+    <meta property="og:image" content="{% static 'images/logo.png' %}">
+    <meta property="og:url" content="https://bulutgayepansiyon.com">
+    <meta property="og:site_name" content="Bulut Gaye Pansiyonu">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Bulut Gaye Pansiyonu Edirne - Konforlu Konaklama">
+    <meta property="twitter:description" content="Edirne merkezde bulunan Bulut Gaye Pansiyonu. Tek kişilik, iki kişilik ve üç kişilik odalarımızla konforlu konaklama.">
+    <meta property="twitter:image" content="{% static 'images/logo.png' %}">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Bulut Gaye Pansiyonu",
+      "description": "Edirne merkezde bulunan konforlu pansiyon. Tek, iki ve üç kişilik odalar.",
+      "url": "https://bulutgayepansiyon.com",
+      "telephone": "+90-539-644-22-23",
+      "email": "gayesavas79@hotmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Topkapı Hamam Sk. No:12",
+        "addressLocality": "Merkez",
+        "addressRegion": "Edirne",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "41.6776811",
+        "longitude": "26.5477485"
+      },
+      "priceRange": "€€",
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free WiFi",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Air conditioning",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "24-hour security",
+          "value": true
+        }
+      ],
+      "accommodation": [
+        {
+          "@type": "Room",
+          "name": "Tek Kişilik Oda",
+          "description": "Konforlu tek kişilik oda",
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "maxValue": 1
+          }
+        },
+        {
+          "@type": "Room",
+          "name": "İki Kişilik Oda",
+          "description": "Geniş ve ferah iki kişilik oda",
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "maxValue": 2
+          }
+        },
+        {
+          "@type": "Room",
+          "name": "Üç Kişilik Oda",
+          "description": "Aile için ideal üç kişilik oda",
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "maxValue": 3
+          }
+        }
+      ]
+    }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3b82f6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-image {
+            width: 5rem;
+            height: 5rem;
+            object-fit: contain;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #10b981;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .quick-contact {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quick-whatsapp {
+            background: #25d366;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .quick-whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+        }
+
+        .quick-phone {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom/100% auto no-repeat;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            min-width: 180px;
+        }
+
+        .cta-button.whatsapp {
+            background: #25d366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-button.whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .cta-button.location {
+            background: #3b82f6;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button.location:hover {
+            background: #1e40af;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            border-radius: 2px;
+        }
+
+        /* Room Gallery */
+        .gallery {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: end;
+        }
+
+        .slide-content {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .slide-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .address {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .address i {
+            color: #10b981;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .quick-contact {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo-image {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-slide {
+                height: 300px;
+            }
+
+            .map-container {
+                height: 300px;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="Ana navigasyon">
+            <a href="#home" class="logo" aria-label="Bulut Gaye Pansiyonu ana sayfa">
+                <img src="{% static 'images/logo.png' %}" alt="Bulut Gaye Pansiyonu Edirne Logo" class="logo-image">
+                Bulut Gaye Pansiyon
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#rooms" class="nav-link">Odalarımız</a></li>
+                <li><a href="#features" class="nav-link">Özellikler</a></li>
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="quick-contact">
+                <a href="tel:+905396442223" class="quick-phone" aria-label="Telefon ile ara">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    0539 644 22 23
+                </a>
+                <a href="https://wa.me/905396442223?text=Merhaba, Bulut Gaye Pansiyonu hakkında bilgi almak istiyorum." target="_blank" class="quick-whatsapp" aria-label="WhatsApp ile iletişime geç">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    WhatsApp
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Mobil menüyü aç">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" onclick="toggleMobileMenu()">Ana Sayfa</a>
+        <a href="#rooms" onclick="toggleMobileMenu()">Odalar</a>
+        <a href="#features" onclick="toggleMobileMenu()">Özellikler</a>
+        <a href="#contact" onclick="toggleMobileMenu()">İletişim</a>
+        <div style="margin-top: 2rem;">
+            <a href="tel:+905396442223" style="display: block; margin-bottom: 1rem; color: #3b82f6;">
+                <i class="fas fa-phone"></i> 0539 644 22 23
+            </a>
+            <a href="https://wa.me/905396442223?text=Merhaba, Bulut Gaye Pansiyonu hakkında bilgi almak istiyorum." target="_blank" style="background: #25d366; color: white; padding: 1rem 2rem; border-radius: 25px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Bulut Gaye Pansiyon</h1>
+                <p>Edirne merkezde konforlu konaklama. Tek, iki ve üç kişilik odalar</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/905396442223?text=Merhaba, Bulut Gaye Pansiyonu hakkında bilgi almak istiyorum." target="_blank" class="cta-button whatsapp" aria-label="WhatsApp ile iletişime geç">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://www.google.com/maps/place/BULUT+GAYE+PANS%C4%B0YON/@41.6776913,26.5476592,21z/data=!4m13!1m2!2m1!1sBulut+Gaye+Pansiyonu!3m9!1s0x14b32f6fca77f8c3:0x78b8a5b03b3eb7b7!5m2!4m1!1i2!8m2!3d41.6776811!4d26.5477485!15sChRCdWx1dCBHYXllIFBhbnNpeW9udVoWIhRidWx1dCBnYXllIHBhbnNpeW9udZIBFnNlcnZpY2VkX2FjY29tbW9kYXRpb26aASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTnRlbUZ1TkhGM1JSQUKqAT0QATIfEAEiG_BHxzzGlaFJfXH2aFdY9wjx6Nxl4A4uVrAk7TIYEAIiFGJ1bHV0IGdheWUgcGFuc2l5b2514AEA-gEECAAQFw!16s%2Fg%2F11f770yr6j?entry=ttu&g_ep=EgoyMDI1MDcwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="cta-button location" aria-label="Google Maps'te konumu gör">
+                        <i class="fas fa-map-marker-alt"></i> Konumu Gör
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Room Gallery -->
+        <section id="rooms" class="section">
+            <div class="container">
+                <h2 class="section-title">Oda Seçeneklerimiz</h2>
+                <div class="gallery">
+                    <div class="gallery-container" id="galleryContainer">
+                        <article class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{% static 'images/tek.JPG' %}')">
+                            <div class="slide-content">
+                                <h3>Tek Kişilik Oda</h3>
+                                <p>Konforlu ve ferah tek kişilik odalarımızda huzurlu bir konaklama deneyimi yaşayın. WiFi, klima ve tüm konforlar dahil.</p>
+                            </div>
+                        </article>
+                        <article class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{% static 'images/cift.JPG' %}')">
+                            <div class="slide-content">
+                                <h3>İki Kişilik Oda</h3>
+                                <p>İdeal iki kişilik odalarımız. Geniş ve ferah alanlar ile huzurlu konaklama deneyimi.</p>
+                            </div>
+                        </article>
+                        <article class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{% static 'images/uc.JPG' %}')">
+                            <div class="slide-content">
+                                <h3>Üç Kişilik Oda</h3>
+                                <p>Aileler için mükemmel üç kişilik odalarımızda geniş ve konforlu alanlar. Çocuklu aileler için ideal.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <nav class="gallery-nav" aria-label="Oda tipleri navigasyonu">
+                    <button class="nav-btn active" onclick="showSlide(0)" aria-label="Tek kişilik oda görseli">Tek Kişilik</button>
+                    <button class="nav-btn" onclick="showSlide(1)" aria-label="İki kişilik oda görseli">İki Kişilik</button>
+                    <button class="nav-btn" onclick="showSlide(2)" aria-label="Üç kişilik oda görseli">Üç Kişilik</button>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title">Neden Bulut Gaye Pansiyon?</h2>
+                <div class="features">
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-wifi" aria-hidden="true"></i>
+                        </div>
+                        <h3>Ücretsiz WiFi</h3>
+                        <p>Tüm alanlarda yüksek hızlı ve güvenli internet erişimi. İş seyahatlerinizde ve tatillerinizde kesintisiz bağlantı.</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-snowflake" aria-hidden="true"></i>
+                        </div>
+                        <h3>Merkezi Klima Sistemi</h3>
+                        <p>Tüm odalarda merkezi klima sistemi.</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3>24/7 Güvenlik</h3>
+                        <p>Güvenli ve huzurlu konaklama için 7/24 güvenlik hizmeti. Değerli eşyalarınız ve aileniz güvende.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Bulut Gaye Pansiyonu İletişim Bilgileri</h2>
+            <div class="contact-info">
+                <address class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <h3>Rezervasyon Telefonu</h3>
+                    <p><a href="tel:+905396442223">+90 539 644 22 23</a></p>
+                    <a href="https://wa.me/905396442223?text=Merhaba, Bulut Gaye Pansiyonu hakkında bilgi almak istiyorum." target="_blank" class="whatsapp-btn" aria-label="WhatsApp üzerinden mesaj gönder">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        WhatsApp'tan Yaz
+                    </a>
+                </address>
+                <address class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <h3>E-posta Adresi</h3>
+                    <p><a href="mailto:gayesavas79@hotmail.com">gayesavas79@hotmail.com</a></p>
+                </address>
+                <address class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    </div>
+                    <h3>Pansiyonumuzun Adresi</h3>
+                    <p>Topkapı Hamam Sk. No:12<br>Merkez/Edirne, Türkiye</p>
+                </address>
+            </div>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186.2489361586071!2d26.547720892841994!3d41.677711036198566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b32f6fca77f8c3%3A0x78b8a5b03b3eb7b7!2sBULUT%20GAYE%20PANS%C4%B0YON!5e0!3m2!1str!2str!4v1752435025512!5m2!1str!2str" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Bulut Gaye Pansiyonu Edirne Harita Konumu"
+                        aria-label="Bulut Gaye Pansiyonu'nun Google Maps üzerindeki konumu">
+                </iframe>
+            </div>
+            <div class="address">
+                <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Topkapı Hamam Sk. No:12, Merkez/Edirne - Tarihi Edirne merkezinde konaklama</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Bulut Gaye Pansiyonu Edirne. Tüm hakları saklıdır. | Edirne merkez konaklama | Tek, iki, üç kişilik odalar</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const galleryContainer = document.getElementById('galleryContainer');
+
+        function showSlide(index) {
+            currentSlide = index;
+            galleryContainer.style.transform = `translateX(-${index * 100}%)`;
+            
+            navButtons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Auto-slide functionality
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation link highlighting
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Add scroll effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+            
+            updateActiveNavLink();
+        });
+
+        // Initialize active nav link
+        updateActiveNavLink();
+    </script>
+</body>
+</html>
