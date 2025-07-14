@@ -1460,12 +1460,7 @@
                 ✨ 19 oda • WiFi • Klima • 24/7 Güvenlik<br>
                 📍 Tarihi merkeze yakın • Modern donanım</p> 
                 <p class="hero-description">4 katlı modern binada 19 adet ferah oda. Her odada özel banyo, tuvalet, buzdolabı, TV ve ücretsiz WiFi. Edirne'nin tarihi merkezinde güvenilir hizmet anlayışıyla hizmetinizdeyiz.</p>  
-Güvenilir hizmet ve modern işletmecilik anlayışı içinde tecrübeli ve güler yüzlü bir çalışan kadrosu ile Edirne' de hizmet vermektedir.
-Çalışan tüm personelimiz yaptığı işler düzenli olarak denetlenmektedir. Misafirlerimizin rahatı ve konforu için gerekli tüm düzenlemeler özenle yerine getirilmektedir. 
-Hizmet kalitemiz sizlerden gelen talepler doğrultusunda gerçekleştirilmektedir. 
-Bulut Gaye PANSİYON; 4 katlı yapıda toplam 19 adet oda hizmet vermektedir. Odalarımızın tümünde tuvalet ve banyo bulunmaktadır. Ayrıca havlu, tek kullanımlık terlik, şampuan, sabun konulmaktadır. 
-Odalarımız 1 - 2 - 3 kişilik odalar şeklinde tasarlanmıştır. Ayrıca tüm odalarımızda buzdolabı,  kettle, TV, kablosuz İnternet bağlantısı bulunmaktadır. 
-Misafirlerimize çamaşır yıkama ve kurutma hizmetimiz de mevcuttur.</p>
+                </p>
                 <div class="cta-buttons">
                     <a href="https://wa.me/905396442223?text=Merhaba, Bulut Gaye Pansiyonu hakkında bilgi almak istiyorum." target="_blank" class="cta-button whatsapp" aria-label="WhatsApp ile iletişime geç">
                         <i class="fab fa-whatsapp"></i> WhatsApp
@@ -1756,14 +1751,9 @@ Misafirlerimize çamaşır yıkama ve kurutma hizmetimiz de mevcuttur.</p>
         </div>
     </footer>
 
+    <!-- Room Images Data Script -->
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.gallery-slide');
-        const navButtons = document.querySelectorAll('.nav-btn');
-        const galleryContainer = document.getElementById('galleryContainer');
-
-        // Room images data
-        const roomImages = {
+        window.roomImagesData = {
             'tek': [
                 {'url': '{% static "images/tek.JPG" %}', 'alt': 'Tek kişilik oda - ana görünüm'},
                 {'url': '{% static "images/tek2.JPG" %}', 'alt': 'Tek kişilik oda - detay görünüm'}
@@ -1779,6 +1769,16 @@ Misafirlerimize çamaşır yıkama ve kurutma hizmetimiz de mevcuttur.</p>
                 {'url': '{% static "images/uc3.JPG" %}', 'alt': 'Üç kişilik oda - ferah alan'}
             ]
         };
+    </script>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const galleryContainer = document.getElementById('galleryContainer');
+
+        // Room images data
+        const roomImages = window.roomImagesData || {};
 
         let currentModalSlide = 0;
         let currentRoomType = '';
@@ -1794,12 +1794,18 @@ Misafirlerimize çamaşır yıkama ve kurutma hizmetimiz de mevcuttur.</p>
 
         // Modal functions
         function openModal(roomType) {
+            console.log('Opening modal for:', roomType);
+            console.log('Available images:', roomImages[roomType]);
+            
             currentRoomType = roomType;
             currentModalSlide = 0;
             const modal = document.getElementById('roomModal');
             const images = roomImages[roomType];
             
-            if (!images) return;
+            if (!images) {
+                console.error('No images found for room type:', roomType);
+                return;
+            }
             
             // Update main image
             updateModalImage();
@@ -1960,8 +1966,17 @@ Misafirlerimize çamaşır yıkama ve kurutma hizmetimiz de mevcuttur.</p>
             updateActiveNavLink();
         });
 
-        // Initialize active nav link
-        updateActiveNavLink();
+        // Initialize gallery after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing gallery...');
+            console.log('Slides found:', slides.length);
+            console.log('Gallery container:', galleryContainer);
+            
+            // Force show first slide
+            if (slides.length > 0) {
+                showSlide(0);
+            }
+        });
     </script>
 </body>
 </html>
