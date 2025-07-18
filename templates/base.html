@@ -1571,7 +1571,7 @@
                         <article class="gallery-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('{% static 'images/cift.JPG' %}')" onclick="openModal('cift')">
                             <div class="slide-content">
                                 <h3>İki Kişilik Oda</h3>
-                                <p>İdeal iki kişilik odalarımız. Geniş ve ferah alanlar ile huzurlu konaklama deneyimi.</p>
+                                <p>Geniş ve ferah iki kişilik odalarımızda huzurlu konaklama. Çift yatak, banyo ve tüm konforlar dahil.</p>
                                 <small style="opacity: 0.8; font-style: italic;">📸 Fotoğrafları büyütmek için tıklayın</small>
                             </div>
                         </article>
@@ -1777,9 +1777,6 @@
         const navButtons = document.querySelectorAll('.nav-btn');
         const galleryContainer = document.getElementById('galleryContainer');
 
-        // Room images data
-        const roomImages = window.roomImagesData || {};
-
         let currentModalSlide = 0;
         let currentRoomType = '';
 
@@ -1794,16 +1791,13 @@
 
         // Modal functions
         function openModal(roomType) {
-            console.log('Opening modal for:', roomType);
-            console.log('Available images:', roomImages[roomType]);
-            
             currentRoomType = roomType;
             currentModalSlide = 0;
             const modal = document.getElementById('roomModal');
-            const images = roomImages[roomType];
+            const images = window.roomImagesData[roomType];
             
-            if (!images) {
-                console.error('No images found for room type:', roomType);
+            if (!images || images.length === 0) {
+                alert('Bu oda tipi için fotoğraf bulunmuyor.');
                 return;
             }
             
@@ -1824,8 +1818,8 @@
         }
 
         function changeSlide(direction) {
-            const images = roomImages[currentRoomType];
-            if (!images) return;
+            const images = window.roomImagesData[currentRoomType];
+            if (!images || images.length === 0) return;
             
             currentModalSlide += direction;
             
@@ -1846,7 +1840,7 @@
         }
 
         function updateModalImage() {
-            const images = roomImages[currentRoomType];
+            const images = window.roomImagesData[currentRoomType];
             if (!images || !images[currentModalSlide]) return;
             
             const mainImage = document.getElementById('modalMainImage');
